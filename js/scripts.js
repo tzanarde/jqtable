@@ -18,25 +18,24 @@ $(document).ready(function() {
         create: function(){
             console.log("Create Risize");
         }              
-    }).sortable({
-        connectWith: "table"
-    }).disableSelection().draggable({
-        snap: true,
-        snapMode: "both",
-        axis: "x",
-        scope: "tasks"
-    });
+    }).disableSelection();
+    
+    $('.defaultTable').dragtable()
 
-    $("tbody tr").selectable({
-        filter: "td",
-        selected: function(){
-            var elemento_clicado = $(this);
-            elemento_clicado.children().addClass("ui-selected");
+    $("th").sortable({
+        connectWith: "table",
+        start: function(event, ui){
+            console.log("Start Sorting");
         }
     });
-   $("table").droppable({
-       accept: "th"
-   })
+});
+
+$("tbody tr").selectable({
+    filter: "td",
+    selected: function(){
+        var elemento_clicado = $(this);
+        elemento_clicado.children().addClass("ui-selected");
+    }
 });
 
 $("td").mousedown(function () { 
